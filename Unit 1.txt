@@ -1,0 +1,47 @@
+//Functional Component • Props • Events • Conditional Rendering • Component Styling
+
+// UNIT 1 — React Fundamentals
+
+import React from "react";
+
+// Functional Component with Props, Conditional Rendering & Event Handling
+export default function UserCard({ name, age, isActive }) {
+
+  const handleClick = () => {
+    alert(`Hello ${name}!`);
+  };
+
+  return (
+    <div style={styles.card}>
+      <h2>{name}</h2>
+      <p>Age: {age}</p>
+
+      {/* Conditional Rendering */}
+      <p>Status: {isActive ? "Active 🟢" : "Inactive 🔴"}</p>
+
+      <button onClick={handleClick} style={styles.btn}>
+        Say Hello
+      </button>
+    </div>
+  );
+}
+
+const styles = {
+  card: {
+    width: "250px",
+    padding: "16px",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    margin: "10px",
+    textAlign: "center",
+    backgroundColor: "#fafafa",
+  },
+  btn: {
+    padding: "8px 12px",
+    background: "black",
+    color: "white",
+    borderRadius: "5px",
+    border: "none",
+    cursor: "pointer",
+  },
+};

@@ -1,0 +1,57 @@
+//GET • POST • DELETE using Axios • JSON APIs
+// UNIT 3 — REST API Calling with Axios
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+export default function ApiDemo() {
+  const [posts, setPosts] = useState([]);
+
+  // GET API
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => setPosts(res.data.slice(0, 5)))
+      .catch((err) => console.log(err));
+  }, []);
+
+  // POST API
+  const createPost = () => {
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", {
+        title: "New Post",
+        body: "This was created using Axios POST",
+      })
+      .then((res) => alert("Post Created! ID: " + res.data.id));
+  };
+
+  // DELETE API
+  const deletePost = (id) => {
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then(() => alert("Post Deleted: " + id));
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>Axios API Example</h2>
+
+      <button onClick={createPost}>Create New Post</button>
+
+      <ul>
+        {posts.map((p) => (
+          <li key={p.id}>
+            {p.title}
+
+            <button
+              style={{ marginLeft: "10px" }}
+              onClick={() => deletePost(p.id)}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

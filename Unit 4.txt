@@ -1,0 +1,29 @@
+//Installing Node • Basic Server • Routing • Request/Response Handling
+// UNIT 4 — Node.js + Express Basic Server
+
+const express = require("express");
+const app = express();
+
+// Middleware to parse JSON
+app.use(express.json());
+
+// Home Route
+app.get("/", (req, res) => {
+  res.send("Welcome to Node.js Express Server!");
+});
+
+// Sample GET API
+app.get("/api/message", (req, res) => {
+  res.json({ message: "Hello from Express API!" });
+});
+
+// Sample POST API
+app.post("/api/user", (req, res) => {
+  const user = req.body;
+  res.json({ message: "User received!", user });
+});
+
+// Start Server
+app.listen(5000, () => {
+  console.log("Server running on http://localhost:5000");
+});
